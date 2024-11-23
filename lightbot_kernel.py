@@ -171,3 +171,29 @@ def plot_terrain_3d(terrain):
 
 # Improved comments for the terrain matrix functions
 # Added reset_terrain to ensure flexibility in resetting the simulation
+
+# Added 3D visualization function
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+def plot_terrain_3d(terrain):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    x = np.arange(terrain.shape[0])
+    y = np.arange(terrain.shape[1])
+    X, Y = np.meshgrid(x, y)
+    Z = terrain['height']
+
+    colors = np.zeros((10, 10, 4))
+    for i in range(10):
+        for j in range(10):
+            if terrain[i, j]['blue']:
+                colors[i, j] = [0, 0, 1, 0.5]
+            elif terrain[i, j]['light']:
+                colors[i, j] = [1, 1, 0, 0.8]
+            else:
+                colors[i, j] = [0.5, 0.5, 0.5, 0.3]
+
+    ax.plot_surface(X, Y, Z, facecolors=colors, linewidth=0.5, rstride=1, cstride=1)
+    ax.set_title("3D Terrain Visualization")
+    plt.show()
