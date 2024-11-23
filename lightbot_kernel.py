@@ -197,3 +197,6 @@ def plot_terrain_3d(terrain):
     ax.plot_surface(X, Y, Z, facecolors=colors, linewidth=0.5, rstride=1, cstride=1)
     ax.set_title("3D Terrain Visualization")
     plt.show()
+
+# Improved comments for the terrain matrix functions
+# Added reset_terrain to ensure flexibility in resetting the simulation
